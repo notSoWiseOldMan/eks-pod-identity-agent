@@ -3,15 +3,13 @@ name: Publish Image
 
 on:
   push:
-    branches:
-      - 'main'
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build:
     # this is to prevent the job to run at forked projects
-    if: github.repository == 'notSoWiseOldMan/eks-pod-identity-agent'
+    if: github.repository == 'notSoWiseOldMan/eks-pod-identity-agent' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
